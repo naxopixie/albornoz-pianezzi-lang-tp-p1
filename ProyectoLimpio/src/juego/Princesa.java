@@ -10,6 +10,8 @@ public class Princesa {
     double alto;
     double velocidady;
     boolean estaenelAire;
+    int cooldownSalto; //nuevo
+    int cooldownMaximo; //nuevo
 
     //constructor
     public Princesa(double xInicial, double yInicial) {
@@ -19,6 +21,8 @@ public class Princesa {
         this.alto = 50;
         this.velocidady = 0;
         this.estaenelAire = false;
+        this.cooldownSalto = 0; //nuevo
+        this.cooldownMaximo = 3; //nuevo ticks espera
     }
 
     // metodo para dibujarse con el entorno
@@ -49,10 +53,11 @@ public class Princesa {
     	y = isla.y - isla.alto / 2 - alto / 2;
     	velocidady= 0;
     	estaenelAire= false;
+    	cooldownSalto = cooldownMaximo; //nuevo
     }
     
     public void salto() {
-    	if(!estaenelAire) {
+    	if(!estaenelAire && cooldownSalto == 0) {  // && cooldownSalto == 0)nuevo
     		velocidady= -14;
     		estaenelAire= true;
     	} 	
@@ -61,4 +66,11 @@ public class Princesa {
     	y = y + velocidady;
     	velocidady = velocidady + 0.6;
     }
+    
+    public void actualizarCooldown() { //nuevo
+    	if (cooldownSalto > 0) { //nuevo
+    		cooldownSalto--; //nuevo "--" decrece ticks a partir de maximo 5; 4; 3; 
+    	}
+    }
+    
    }

@@ -90,8 +90,11 @@ public class Juego extends InterfaceJuego
      // para que la princesa cuando no este apoyada sobre una isla caiga
         
         if (!estaApoyada) {
-            elizabeth.caer();
+        	elizabeth.estaenelAire = true;
+            elizabeth.caer(); //nuevo
         }
+        
+        elizabeth.actualizarCooldown(); // nuevo
         
 	}
 
